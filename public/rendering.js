@@ -1,4 +1,4 @@
-var val=document.getElementById("result");//'嗚呼おおお∀あいうえおえい∀あいうあいうあいうあいうあ嗚呼'; // テキスト。改行は「∀」に変換しておく
+var val='嗚呼おおお、あいうえおえい∀あいうあいうあいうあいうあ嗚呼'; // テキスト。改行は「∀」に変換しておく
 val = (val.replace('、', '∀'));
 console.log(val);
 
