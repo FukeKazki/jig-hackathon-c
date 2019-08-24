@@ -1,5 +1,7 @@
 import csv
+import pandas as pd
+import pprint
 
-with open('some.csv', 'r') as f:
-    reader = csv.reader(f)
-    header = next(reader)  # ヘッダーを読み飛ばしたい時
+data = pd.read_csv("./data/dummy.csv").values.tolist()
+
+print (data)
