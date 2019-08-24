@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form{
+    border: solid 1px rgb(255, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16pt;
+}
+
+input{
+    margin: 4pt;
+}
+
+
+canvas{
+    display: none;
+}
