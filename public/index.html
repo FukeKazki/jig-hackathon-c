@@ -10,21 +10,23 @@
     <title>タイトル</title>
   </head>
   <body>
+    <div>
     <p>
       <form action="/" method="post" enctype="multipart/form-data" id="imgform">
 	<input type="file" id="imagefile" name="imagefile" class="inputfile" accept="image/*" />
-	<label for="imagefile" class="ui green large left button">
+	<label for="imagefile" class="ui green large left button" id="choose">
 	  <i class="ui picture icon"></i> 
 	  写真を選択
 	</label>
 	<input name="feature" id="feature" />
 	<input type="submit" class="inputfile" id="submitbutton" />
-	<label for="submitbutton" class="ui teal large right button">
+	<label for="submitbutton" class="ui teal large right button" id="upload">
 	  <i class="ui upload icon"></i> 
 	  アップロード
 	</label>
       </form>
     </p>
+    </div>
     <canvas id="canvas"></canvas>
     <script src="class.js"> </script>
     <script src="index.js"> </script>
