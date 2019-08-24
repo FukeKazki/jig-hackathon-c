@@ -22,7 +22,7 @@ type formData struct {
 func main() {
 	r := mux.NewRouter()
 
-	var dummy = data{phrases: []string{"令和だね", "令和といえば", "タピオカだ"}, image: "base64..."}
+	var dummy = data{phrases: []string{"パイナップルのファイアサラマンダーにして、ジグソーパズル蒸気機関車ミニチュアピンシャークレードル、フクロテナガザルはスポットライト白衣の粉をカセット、エスプレッソマシーンは最後の香を"}, image: "base64..."}
 
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("public")))).Methods("GET")
 
@@ -37,12 +37,7 @@ func main() {
 		formValue := r.FormValue("feature")
 		datas := []formData{}
 
-		fmt.Fprintf(w, formValue+"\n")
-
 		json.Unmarshal([]byte(formValue), &datas)
-		for _, v := range datas {
-			fmt.Fprintf(w, string(v.index)+"\n")
-		}
 		for _, v := range dummy.phrases {
 			fmt.Fprintf(w, v+"\n")
 		}
@@ -50,7 +45,7 @@ func main() {
 
 	srv := &http.Server{
 		Handler: r,
-		Addr:    "localhost:8000",
+		Addr:    ":8000",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
