@@ -9,7 +9,7 @@ body{
     background-position: center;
 }
 
-div{
+div#main{
     background: rgba(255, 255, 255, 0.7);
     width: 180pt;
     height: 270pt;
@@ -18,6 +18,17 @@ div{
     justify-content: center;
     align-items: center;
     border-radius: 4.8pt;
+}
+
+div#kazari{
+    font-size: 10pt;
+    height: 270pt;
+    padding: 12pt 0 36pt 0;
+    color: rgb(135, 135, 135);
+}
+
+span{
+    writing-mode: vertical-rl;
 }
 
 form{
