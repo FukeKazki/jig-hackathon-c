@@ -6,7 +6,7 @@ import random
 
 # args = sys.argv
 
-w = [
+args = [
     "ドクターフィッシュ",
     "金魚",
     "ホホジロザメ",
@@ -1018,7 +1018,7 @@ for row in data:
         # print(row[3])
     if row[2] != '、':
         if len(row[3]) >= 2 :
-            row[2] = random.choice(w)
+            row[2] = random.choice(args)
 
 st = ""                
 for row in data:
