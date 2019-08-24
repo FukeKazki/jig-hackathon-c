@@ -27,6 +27,8 @@ function predict(){
 
 	document.getElementById('feature').value = String(JSON.stringify(pindex));
 	console.log(document.getElementById('imagefile').value);
+
+	document.getElementById("imgform").submit();
     });
 }
 
