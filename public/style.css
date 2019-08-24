@@ -38,7 +38,7 @@ form{
 }
 
 input{
-    display: none;
+    /* display: none; */
 }
 
 #upload{
