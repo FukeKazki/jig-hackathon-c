@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head> 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-    <!-- Load TensorFlow.js. This is required to use MobileNet. -->
+    <meta name="viewport" content="width=device-width">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
-    <!-- Load the MobileNet model. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+    <link href="style.css" rel="stylesheet" media="all">
     <title>タイトル</title>
   </head>
-
   <body>
-    <p>
-      <form action="/" method="post" enctype="multipart/form-data" id="imgform">
-	<input type="file" id="imagefile" name="imagefile" class="inputfile" accept="image/*" />
-	<label for="imagefile" class="ui green large left button">
-	  <i class="ui picture icon"></i> 
-	  写真を選択
-	</label>
-	<input type="submit" class="inputfile" id="submitbutton" />
-	<label for="submitbutton" class="ui teal large right button">
-	  <i class="ui upload icon"></i> 
-	  アップロード
-	</label>
-      </form>
-    </p>
+    <form action="/" method="post" enctype="multipart/form-data" id="imgform">
+	    <input type="file" id="imagefile" name="imagefile" class="inputfile" accept="image/*" />
+	    <input type="submit" class="inputfile" id="submitbutton" />
+    </form>
+    <canvas id="canvas"></canvas>
     <script src="class.js"> </script>
     <script src="index.js"> </script>
+    <script src="canvas.js"> </script>
   </body>
 </html>
