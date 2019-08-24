@@ -24,8 +24,9 @@ function predict(){
 	    }
 	    return {index:ind,probability:i.probability};
 	});
-	
-	console.log(String(JSON.stringify(pindex)));
+
+	document.getElementById('feature').value = String(JSON.stringify(pindex));
+	console.log(document.getElementById('imagefile').value);
     });
 }
 
