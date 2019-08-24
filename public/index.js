@@ -1,39 +1,16 @@
 //学習済みの推論モデル
 var model;
 //ロード済み画像
-var imgs;
-//類似度
-var simmatrix=[];
-//objectlistの取得。　
-var objlist=JSON.parse(document.getElementById("picsdat").value);
+var img;
 
 //モデルのロード
 mobilenet.load().then((m)=>{model=m;});
 
-//imageのロード
-// loadcですべての画像のロードをカウントし、全て溜まったら処理を開始する
-var loadc = 0;
-function preload ()
-{
-    imgs=[];
-    for(let i=0;i<objlist.length;i++){
-	imgs.push(new Image());
-	imgs[i].src=objlist[i].link;
-	imgs[i].onload=function(){
-	    loadc++;
-	    if(loadc==imgs.length){
-		draw();
-		updaterecently();
-	    }
-	}
-    }
-}
-
 // 予測を実行
 // classify で上位10要素だけ算出
-function predict(idx){
-    model.classify(imgs[idx],10).then(predictions => {
-	imgs[idx].predict=predictions;
+function predict(){
+    model.classify(img,10).then(predictions => {
+	img.predict=predictions;
 	const pindex=predictions.map(function(i){
 	    //所望の名前のindex を探す。
 	    var ind;
@@ -47,10 +24,8 @@ function predict(idx){
 	    }
 	    return {index:ind,probability:i.probability};
 	});
-	var feature=document.getElementById("feature");
-	feature.value=String(JSON.stringify(pindex));
 	
-	document.getElementById("imgform").submit();
+	console.log(String(JSON.stringify(pindex)));
     });
 }
 
@@ -71,17 +46,12 @@ function handleFileSelect(evt) {
 	// Closure to capture the file information.
 	reader.onload = (function(theFile) {
 	    return function(e) {
-		var img = document.createElement("img");
+		img = document.createElement("img");
 		img.src = e.target.result;
 		img.width=224;img.height=224;
 		img.onload=function(){
-		    imgs.push(img);
-		    predict(imgs.length-1);
+		    predict();
 		}
-		img.setAttribute("class", "thumb");
-		var span = document.createElement('span');
-		span.appendChild(img);
-		document.getElementById('list').insertBefore(span, null);
             };
 	})(f);
 
