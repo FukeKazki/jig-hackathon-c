@@ -4,10 +4,13 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: url('./back.png');
+    background-size: cover;
+    background-position: center;
 }
 
 div{
-    border: solid 2pt rgb(8, 163, 21);
+    background: rgba(255, 255, 255, 0.7);
     width: 180pt;
     height: 270pt;
     padding: 16pt 8pt 32pt 4pt;
