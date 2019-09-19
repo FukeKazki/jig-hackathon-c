@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('./back.png');
+    background-size: cover;
+    background-position: center;
+}
+
+div#main{
+    background: rgba(255, 255, 255, 0.7);
+    width: 180pt;
+    height: 270pt;
+    padding: 16pt 8pt 32pt 4pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4.8pt;
+}
+
+div#kazari{
+    font-size: 10pt;
+    height: 270pt;
+    padding: 12pt 0 36pt 0;
+    color: rgb(135, 135, 135);
+}
+
+span{
+    writing-mode: vertical-rl;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+input{
+    /* display: none; */
+}
+
+#upload{
+    margin: 4pt;
+}
+
+#choose{
+    margin: 4pt;
+}
+
+
+canvas{
+    display: none;
+}

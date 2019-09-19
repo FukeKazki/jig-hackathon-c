@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+    <link href="style.css" rel="stylesheet" media="all">
+    <title>タイトル</title>
+  </head>
+  <body>
+    <div id="main">
+    <p>
+      <form action="/" method="post" enctype="multipart/form-data" id="imgform">
+	<input type="file" id="imagefile" name="imagefile" class="inputfile" accept="image/*" />
+	<label for="imagefile" class="ui green large left button" id="choose">
+	  <i class="ui picture icon"></i> 
+	  写真を選択
+	</label>
+	<input name="feature" id="feature" />
+	<input type="submit" class="inputfile" id="submitbutton" />
+	<label for="submitbutton" class="ui teal large right button" id="upload">
+	  <i class="ui upload icon"></i> 
+	  アップロード
+	</label>
+      </form>
+    </p>
+    </div>
+    <div id="kazari">
+    <span>YOROZU Gen.</span>
+    </div>
+    <script src="class.js"> </script>
+    <script src="index.js"> </script>
+  </body>
+</html>
