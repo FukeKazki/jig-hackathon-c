@@ -3,50 +3,67 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"jig-hackathon-c/pkg/datas"
 	"log"
 	"net/http"
+	"os"
+	"os/exec"
+	"strconv"
 	"time"
 
 	"github.com/gorilla/mux"
 )
 
-type data struct {
-	phrases []string
-	image   string
-}
-
-type formData struct {
-	index int
+type FormData struct {
+	Index int `json:"index"`
 }
 
 func main() {
-	r := mux.NewRouter()
 
-	var dummy = data{phrases: []string{"パイナップルのファイアサラマンダーにして、ジグソーパズル蒸気機関車ミニチュアピンシャークレードル、フクロテナガザルはスポットライト白衣の粉をカセット、エスプレッソマシーンは最後の香を"}, image: "base64..."}
+	datas.InitClassCSV()
+
+	r := mux.NewRouter()
 
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("public")))).Methods("GET")
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		formFile, _, err := r.FormFile("imagefile")
+
+		featureValue := r.FormValue("feature")
+		imageFile, _, err := r.FormFile("imagefile")
 		if err != nil {
 			log.Fatal(err.Error())
 		}
-		defer formFile.Close()
+		defer imageFile.Close()
 
-		formValue := r.FormValue("feature")
-		datas := []formData{}
-
-		json.Unmarshal([]byte(formValue), &datas)
-		for _, v := range dummy.phrases {
-			fmt.Fprintf(w, v+"\n")
+		file, err := os.Create("./storage/image_" + strconv.FormatInt(time.Now().UTC().UnixNano(), 10) + ".img")
+		if err != nil {
+			log.Fatal(err.Error())
 		}
+		defer file.Close()
+
+		var image []byte
+		imageFile.Read(image)
+		file.Write(image)
+
+		formDatas := []FormData{}
+		json.Unmarshal([]byte(featureValue), &formDatas)
+		args := make([]string, 0, len(formDatas))
+		for _, v := range formDatas {
+			args = append(args, (*datas.CLASS)[v.Index%len((*datas.CLASS))])
+		}
+
+		execResult, err := exec.Command("python", append([]string{"src/algorithm.py"}, args...)...).Output()
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+
+		fmt.Fprintf(w, string(execResult)+"\n")
 	}).Methods("POST")
 
 	srv := &http.Server{
-		Handler: r,
-		Addr:    ":8000",
-		// Good practice: enforce timeouts for servers you create!
+		Handler:      r,
+		Addr:         ":8000",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
